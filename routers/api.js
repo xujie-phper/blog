@@ -5,12 +5,13 @@ var express = require('express');
 var Router = express.Router();
 var userModel = require('../models/userModel').userModel;
 
-var responseData = {
-  code: 0,
-  message: ''
-};
 
-Router.post('/user/login',function(req,res,next){
+
+Router.post('/user/login', function (req, res, next) {
+  var responseData = {
+    code: 0,
+    message: ''
+  };
   var username = req.body.username;
   var password = req.body.password;
   var repassword = req.body.repassword;
@@ -35,22 +36,24 @@ Router.post('/user/login',function(req,res,next){
   //注册成功，写入数据库
   var user = new userModel({
     username: username,
-    password : password
+    password: password
   });
   userModel.findOne({
-    username :username
-  }).then(function(userInfo){
-    if(userInfo){
+    username: username
+  }).then(function (userInfo) {
+    if (userInfo) {
       responseData.code = 4;
       responseData.message = '用户已经注册';
       res.json(responseData);
       return;
     }
     return user.save();
-  }).then(function(newUser){
+  }).then(function (newUser) {
     console.log(newUser);
     responseData.message = '注册成功！';
     res.json(responseData);
+  }).catch(function (err) {
+    console.log(err)
   })
 
 });

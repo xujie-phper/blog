@@ -7,7 +7,7 @@ var userModel = require('../models/userModel').userModel;
 
 
 
-Router.post('/user/login', function (req, res, next) {
+Router.post('/user/register', function (req, res, next) {
   var responseData = {
     code: 0,
     message: ''
@@ -49,12 +49,21 @@ Router.post('/user/login', function (req, res, next) {
     }
     return user.save();
   }).then(function (newUser) {
-    console.log(newUser);
     responseData.message = '注册成功！';
     res.json(responseData);
   }).catch(function (err) {
     console.log(err)
   })
-
+});
+Router.post('/user/login',function(req,res,next){
+  var username = req.body.username;
+  var password = req.body.password;
+  var User = new userModel();
+  User.find({username:username,password:password}).then(function(userInfo){
+    if(userInfo){
+      //登录成功，将用户信息写入session
+      req.session.set('userInfo',userInfo);
+    }
+  })
 });
 exports.Router = Router;

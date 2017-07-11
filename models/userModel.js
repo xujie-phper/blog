@@ -1,5 +1,5 @@
 /**
- * Created by ludongdong on 2017/4/14.
+ * Created by xujie1 on 2017/4/14.
  */
 var mongoose = require('mongoose');
 var userSchema = require('../schemas/userSchema').userSchema;

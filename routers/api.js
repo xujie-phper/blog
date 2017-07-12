@@ -66,4 +66,7 @@ Router.post('/user/login',function(req,res,next){
     }
   })
 });
+Router.get('/about',function(req,res,next){
+  res.render('main/about');
+});
 exports.Router = Router;

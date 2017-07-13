@@ -1,0 +1,44 @@
+{% extends 'layout.html' %}
+{% block index%}
+<!--右侧主操作区-->
+<div class="main-wrap">
+    <div class="crumb-wrap">
+        <div class="crumb-list">
+            <i class="icon-font">&#xe06b;</i>
+            <span>欢迎使用博客后台管理系统。</span>
+        </div>
+    </div>
+    <div class="result-wrap">
+        <div class="result-title">
+            <h1>系统基本信息</h1>
+        </div>
+        <div class="result-content">
+            <ul class="sys-info-list">
+                <li>
+                    <label class="res-lab">操作系统</label><span class="res-info">WINNT</span>
+                </li>
+                <li>
+                    <label class="res-lab">运行环境</label><span class="res-info">Apache/2.2.21 (Win64) PHP/5.3.10</span>
+                </li>
+                <li>
+                    <label class="res-lab">PHP运行方式</label><span class="res-info">apache2handler</span>
+                </li>
+                <li>
+                    <label class="res-lab">模板版本</label><span class="res-info">v-0.1</span>
+                </li>
+                <li>
+                    <label class="res-lab">上传附件限制</label><span class="res-info">2M</span>
+                </li>
+                <li>
+                    <label class="res-lab">北京时间</label>
+                    <span class="res-info" id='nowtime'>2015年9月4日 11:01:07</span>
+                </li>
+                <li>
+                    <label class="res-lab">服务器域名</label><span class="res-info"><span id="host">localhost</span></span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!--/main-->
+{% endblock %}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户注册</title>
+    <style>
+        div{
+            border:1px solid #756f71;
+            text-align: center;
+        }
+        div input{
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+<div style="margin: 200px auto;width:300px">
+    <form action="/api/user/register" method="post">
+        <span>用户名：</span><input name="username"/><br/>
+        <span>密码：</span><input name="password"/><br/>
+        <span>确认密码：</span><input name="repassword"/><br/>
+        <input type="submit" value="注册"/>
+    </form>
+</div>
+</body>
+</html>

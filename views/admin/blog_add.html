@@ -4,28 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <title>后台管理</title>
-    <link rel="stylesheet" type="text/css" href="/public/Home/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/public/Home/css/main.css"/>
-    <script type="text/javascript" src="/public/Home/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="/public/Home/js/jquery1.42.min.js"></script>
-    {literal}
-    <script >
-        $(function(){
-            $("#nowtime").css({color:'red'});
-            window.setInterval('ShowTime()',1000);
-        });
-        function ShowTime(){
-            var t = new Date();
-            var str = t.getFullYear() + '年';
-            str += t.getMonth() + '月';
-            str += t.getDate() + '日 ';
-            str += t.getHours() + ':';
-            str += t.getMinutes() + ':';
-            str += t.getSeconds() + '';
-            $("#nowtime").html(str);
-        }
-    </script>
-    {/literal}
+    <link rel="stylesheet" type="text/css" href="/public/Admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/Admin/css/main.css"/>
+    <script type="text/javascript" src="/public/Admin/js/libs/modernizr.min.js"></script>
+    <script type="text/javascript" src="/public/Admin/js/jquery1.42.min.js"></script>
 </head>
 <body>
 
@@ -63,8 +45,7 @@
                     <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
                     <ul class="sub-menu">
                         <li><a href="?p=back&c=Category"><i class="icon-font">&#xe008;</i>分类管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe005;</i>博文管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe006;</i>分类管理</a></li>
+                        <li><a href="?p=back&c=Blog"><i class="icon-font">&#xe005;</i>博文管理</a></li>
                         <li><a href="#"><i class="icon-font">&#xe012;</i>评论管理</a></li>
                         <li><a href="#"><i class="icon-font">&#xe052;</i>友情链接</a></li>
                     </ul>
@@ -89,26 +70,34 @@
             <div class="crumb-list"><i class="icon-font"></i>
                 <a href="?p=back">首页</a>
                 <span class="crumb-step">&gt;</span>
-                <span class="crumb-name">分类管理</span>
+                <span class="crumb-name">博文管理</span>
                 <span class="crumb-step">&gt;</span>
-                <span class="crumb-name">添加分类</span>
+                <span class="crumb-name">添加博文</span>
             </div>
         </div>
         <div class="result-wrap">
             <div class="result-content">
-                <form action="?p=back&c=Category&a=Insert" method="post" id="myform" >
+                <form action="?p=back&c=Blog&a=Insert" method="post" id="myform" >
                     <table class="insert-tab" width="100%">
                         <tbody>
                             <tr>
-                                <th><i class="require-red">*</i>分类名称：</th>
+                                <th><i class="require-red">*</i>所属分类：</th>
                                 <td>
-                                    <input class="common-text required" id="title" name="category_name" size="50" value="" type="text">
+                                   <select name="category_id">
+                                       <option value="">请选择</option>
+                                       <option value='1'>基础知识</option><option value='2'>MVC框架技术</option><option value='3'>生活感悟</option><option value='4'>技术前沿</option><option value='6'>新闻资讯</option>                                   </select>
                                 </td>
                             </tr>
                             <tr>
-                                <th>分类描述：</th>
+                                <th><i class="require-red">*</i>标题：</th>
                                 <td>
-                                    <textarea name="category_desc" class="common-textarea" cols="60" rows="4"></textarea>
+                                    <input class="common-text required" name="blog_title" size="50" value="" type="text">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th><i class="require-red">*</i>内容：</th>
+                                <td>
+                                    <textarea name="blog_content" class="common-textarea" cols="100" rows="20"></textarea>
                                 </td>
                             </tr>
                             <tr>
@@ -118,7 +107,8 @@
                                     <input class="btn btn6" onclick="history.go(-1)" value="返回" type="button">
                                 </td>
                             </tr>
-                        </tbody></table>
+                        </tbody>
+                    </table>
                 </form>
             </div>
 

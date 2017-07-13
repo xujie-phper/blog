@@ -5,13 +5,28 @@ var express = require('express');
 var swig = require('swig');
 var Router = express.Router();
 var bodyParser = require('body-parser');
+var Cookies = require('cookies');
 var app = express();
+var mongoose = require('mongoose');
+//使用es6的原生promise
+mongoose.Promise = global.Promise;
+
+try{
+  mongoose.connect('mongodb://localhost/blog');
+  console.log('连接数据库成功');
+}catch (err){
+  console.log(err);
+}
 
 
 //设置静态文件托管，用户访问的url以/public开始，那么直接返回对应的__dirname+'./public'下的文件
 app.use('/public', express.static(__dirname + '/public'));
 //body-parse设置
 app.use(bodyParser.urlencoded({extended:true}));
+app.use(function(req,res,next){
+  req.cookies = new Cookies(req.res);
+  next();
+});
 
 //定义当前应用所使用的的模板引擎
 //第一个参数：模板引擎的名称，同时也为模板引擎的后缀，第二个参数表示用于解析模板内容的方法

@@ -4,32 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <title>后台管理</title>
-    <link rel="stylesheet" type="text/css" href="/public/Home/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/public/Home/css/main.css"/>
-    <script type="text/javascript" src="/public/Home/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="/public/Home/js/jquery1.42.min.js"></script>
-    {literal}
+    <link rel="stylesheet" type="text/css" href="/public/Admin/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="/public/Admin/css/main.css"/>
+    <script type="text/javascript" src="/public/Admin/js/libs/modernizr.min.js"></script>
+    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
     <script >
         $(function(){
-            $("#nowtime").css({color:'red'});
+            $("#nowtime").css({color:'red',textAlign:'center',fontSize:'18px',magin:'20px 0'});
             window.setInterval('ShowTime()',1000);
         });
-        function ShowTime(){
-            var t = new Date();
-            var str = t.getFullYear() + '年';
-            str += t.getMonth() + '月';
-            str += t.getDate() + '日 ';
-            str += t.getHours() + ':';
-            str += t.getMinutes() + ':';
-            str += t.getSeconds() + '';
-            $("#nowtime").html(str);
+        function ShowTime() {
+          var t = new Date();
+          var str = t.getFullYear() + '年';
+          str += (t.getMonth() + 1) + '月';
+          str += t.getDate() + '日 ';
+          str += t.getHours() + ':';
+          str += t.getMinutes() + ':';
+          str += t.getSeconds() + '';
+          $("#nowtime").html(str);
         }
     </script>
-    {/literal}
 </head>
 <body>
 
-
+<div id="nowtime"></div>
 <div class="topbar-wrap white">
     <div class="topbar-inner clearfix">
         <div class="topbar-logo-wrap clearfix">

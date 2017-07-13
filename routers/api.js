@@ -5,8 +5,6 @@ var express = require('express');
 var Router = express.Router();
 var userModel = require('../models/userModel').userModel;
 
-
-
 Router.post('/user/register', function (req, res, next) {
   var responseData = {
     code: 0,
@@ -38,10 +36,12 @@ Router.post('/user/register', function (req, res, next) {
     username: username,
     password: password
   });
+
   userModel.findOne({
     username: username
   }).then(function (userInfo) {
     if (userInfo) {
+      console.log(userInfo);
       responseData.code = 4;
       responseData.message = '用户已经注册';
       res.json(responseData);
@@ -58,15 +58,35 @@ Router.post('/user/register', function (req, res, next) {
 Router.post('/user/login',function(req,res,next){
   var username = req.body.username;
   var password = req.body.password;
-  var User = new userModel();
-  User.find({username:username,password:password}).then(function(userInfo){
+  userModel.findOne({username:username,password:password}).then(function(userInfo){
     if(userInfo){
-      //登录成功，将用户信息写入session
-      req.session.set('userInfo',userInfo);
+      console.log(userInfo,'userInfo')
+      //登录成功，信息写入cookie
+      req.cookies.set('userInfo',userInfo);
+    }else{
+      res.send('<h1>用户名或密码错误</h1>');
     }
   })
 });
+Router.get('/user/login',function(req, res, next){
+  res.render('main/login');
+});
+Router.get('/user/register',function(req, res, next){
+  res.render('main/register');
+})
 Router.get('/about',function(req,res,next){
   res.render('main/about');
+});
+Router.get('/share',function(req,res,next){
+  res.render('main/share');
+});
+Router.get('/news',function(req,res,next){
+  res.render('main/news');
+});
+Router.get('/newslist',function(req,res,next){
+  res.render('main/newslist');
+});
+Router.get('/',function(req,res){
+  res.send('hello world');
 });
 exports.Router = Router;

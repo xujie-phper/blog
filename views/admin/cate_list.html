@@ -1,85 +1,5 @@
-
-<!doctype html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>后台管理</title>
-    <link rel="stylesheet" type="text/css" href="/public/Admin/css/common.css"/>
-    <link rel="stylesheet" type="text/css" href="/public/Admin/css/main.css"/>
-    <script type="text/javascript" src="/public/Admin/js/libs/modernizr.min.js"></script>
-    <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.6.4/jquery.js"></script>
-    <script >
-        $(function(){
-            $("#nowtime").css({color:'red',textAlign:'center',fontSize:'18px',magin:'20px 0'});
-            window.setInterval('ShowTime()',1000);
-        });
-        function ShowTime() {
-          var t = new Date();
-          var str = t.getFullYear() + '年';
-          str += (t.getMonth() + 1) + '月';
-          str += t.getDate() + '日 ';
-          str += t.getHours() + ':';
-          str += t.getMinutes() + ':';
-          str += t.getSeconds() + '';
-          $("#nowtime").html(str);
-        }
-    </script>
-</head>
-<body>
-
-<div id="nowtime"></div>
-<div class="topbar-wrap white">
-    <div class="topbar-inner clearfix">
-        <div class="topbar-logo-wrap clearfix">
-            <h1 class="topbar-logo none"><a href="index.html" class="navbar-brand">后台管理</a></h1>
-            <ul class="navbar-list clearfix">
-                <li><a class="on" href="index.html">首页</a></li>
-                <li><a href="#" target="_blank">网站首页</a></li>
-            </ul>
-        </div>
-        <div class="top-info-wrap">
-            <ul class="top-info-list clearfix">
-                <li><a href="http://www.jscss.me">管理员</a></li>
-                <li><a href="http://www.jscss.me">修改密码</a></li>
-                <li><a href="http://www.jscss.me">退出</a></li>
-            </ul>
-        </div>
-    </div>
-</div>
-<div class="container clearfix">
-    
-    <!--左侧菜单栏-->
-    
-    <!--左侧菜单栏 begin-->
-    <div class="sidebar-wrap">
-        <div class="sidebar-title">
-            <h1>菜单</h1>
-        </div>
-        <div class="sidebar-content">
-            <ul class="sidebar-list">
-                <li>
-                    <a href="#"><i class="icon-font">&#xe003;</i>常用操作</a>
-                    <ul class="sub-menu">
-                        <li><a href="?p=back&c=Category"><i class="icon-font">&#xe008;</i>分类管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe005;</i>博文管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe006;</i>分类管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe012;</i>评论管理</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe052;</i>友情链接</a></li>
-                    </ul>
-                </li>
-                <li>
-                    <a href="#"><i class="icon-font">&#xe018;</i>系统管理</a>
-                    <ul class="sub-menu">
-                        <li><a href="#"><i class="icon-font">&#xe017;</i>系统设置</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe046;</i>数据备份</a></li>
-                        <li><a href="#"><i class="icon-font">&#xe045;</i>数据还原</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </div>
-    </div>
-    <!--左侧菜单栏 begin-->
-    
+{% extends 'layout.html' %}
+{%block self%}
     <!--右侧主操作区-->
     <div class="main-wrap">
 
@@ -129,55 +49,22 @@
                             <th>评论</th>
                             <th>操作</th>
                         </tr>
-                                                <tr>
+                        {% for cateInfo in cateList %}
+                        <tr>
                             <td class="tc">
                                 <input name="id[]" value="1" type="checkbox">
                             </td>
                             <td>59</td>
-                            <td >基础知识</td>
-                            <td></td>
+                            <td>{{cateInfo.cateName}}</td>
+                            <td>{{cateInfo.cateDesc}}</td>
                             <td>
                                 <a class="link-update" href="#">修改</a>
                                 <a class="link-del" href="#">删除</a>
                             </td>
                         </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="2" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >MVC框架技术</td>
-                            <td>有关PHP领域的各种MVC框架技术</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="3" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >生活感悟</td>
-                            <td>随时随地记录生活的点点滴滴</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                                <tr>
-                            <td class="tc">
-                                <input name="id[]" value="4" type="checkbox">
-                            </td>
-                            <td>59</td>
-                            <td >技术前沿</td>
-                            <td>关注新技术，保持竞争力</td>
-                            <td>
-                                <a class="link-update" href="#">修改</a>
-                                <a class="link-del" href="#">删除</a>
-                            </td>
-                        </tr>
-                                            </table>
+                        {% endfor %}
+
+                    </table>
                     <div class="list-page"> 2 条 1/1 页</div>
                 </div>
             </form>
@@ -186,6 +73,4 @@
     </div>
     <!--/右侧主操作区-->
 </div>
-
-</body>
-</html>
+{%endblock%}

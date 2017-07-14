@@ -9,7 +9,13 @@ Router.get('/',function(req, res, next){
   res.render('admin/index');
 });
 Router.get('/cate/list',function(req, res, next){
-  res.render('admin/cate_list');
+  cateModel.find().then(function (cateList) {
+    if(cateList.length > 0){
+      res.render('admin/cate_list',{cateList:cateList});
+    }
+  }).catch(function (err) {
+    console.log(err,'cateModelError')
+  });
 });
 Router.get('/cate/add',function(req, res, next){
   res.render('admin/cate_add');
